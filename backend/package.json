@@ -2,11 +2,11 @@
   "name": "apex-institute-backend",
   "version": "1.0.0",
   "description": "Backend API for Apex Institute School Management Portal",
-  "main": "dist/server.js",
+  "main": "dist/src/server.js",
   "scripts": {
     "dev": "tsx watch src/server.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/src/server.js",
     "db:seed": "tsx scripts/seed.ts",
     "db:migrate": "tsx scripts/migrate.ts"
   },

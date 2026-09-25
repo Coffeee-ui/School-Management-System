@@ -1,12 +1,6 @@
-export type AppMode = 'normal' | 'demo';
-
-const mode: AppMode =
-  (import.meta.env.VITE_APP_MODE as string)?.toLowerCase() === 'demo' ? 'demo' : 'normal';
-
+// Application configuration
+// Note: Demo Mode vs Normal Mode is authoritative from backend environment (.env -> APP_MODE)
 export const APP_CONFIG = {
-  MODE: mode,
-  DEMO_MODE: mode === 'demo',
-  NORMAL_MODE: mode === 'normal',
   API_BASE_URL: import.meta.env.VITE_API_URL || '/api',
 };
 

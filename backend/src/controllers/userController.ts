@@ -19,7 +19,7 @@ export class UserController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const user = userRepo.findSafeById(id);
       if (!user) {
         res.status(404).json({ error: 'User not found' });
@@ -95,7 +95,7 @@ export class UserController {
 
   public static async update(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const { username, email, password, role, status, student_id, employee_id } = req.body;
 
       const existing = userRepo.findById(id);
@@ -167,7 +167,7 @@ export class UserController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const existing = userRepo.findById(id);
       if (!existing) {
         res.status(404).json({ error: 'User not found' });

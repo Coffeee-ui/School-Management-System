@@ -42,7 +42,7 @@ export class EmployeeController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const employee = employeeService.getById(id);
       if (!employee) {
         res.status(404).json({ error: 'Employee not found' });
@@ -80,7 +80,7 @@ export class EmployeeController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const updated = employeeService.update(id, req.body);
       if (!updated) {
         res.status(404).json({ error: 'Employee not found' });
@@ -109,7 +109,7 @@ export class EmployeeController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const employee = employeeService.getById(id);
       if (!employee) {
         res.status(404).json({ error: 'Employee not found' });

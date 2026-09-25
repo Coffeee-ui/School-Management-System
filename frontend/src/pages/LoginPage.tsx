@@ -55,6 +55,20 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateRegister }) => {
     setPassword(preset.password);
   };
 
+  const handleQuickLogin = async (preset: DemoPreset) => {
+    setIdentifier(preset.username);
+    setPassword(preset.password);
+    setSubmitting(true);
+    try {
+      await login(preset.username, preset.password);
+      success(`Authenticated as ${preset.title} (${preset.role.toUpperCase()})`);
+    } catch (err: unknown) {
+      error(err instanceof Error ? err.message : 'Demo login failed');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
   return (
     <div className="auth-page-wrapper">
       <div className="auth-card-container">
@@ -69,11 +83,14 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateRegister }) => {
         {demoMode && (
           <div className="demo-banner-box">
             <div className="demo-banner-title">
-              <Sparkles size={16} />
-              <span>Demo Mode Active</span>
+              <div className="d-flex align-center gap-2">
+                <Sparkles size={16} />
+                <span>Demo Mode Active</span>
+              </div>
+              <span className="demo-banner-badge">1-Click Role Login</span>
             </div>
             <p className="demo-banner-desc">
-              Select an institutional role preset below for one-click demo login:
+              Select an institutional role below to instantly authenticate and review that role's dashboard:
             </p>
             <div className="demo-presets-grid">
               {presets.map((p) => (
@@ -81,8 +98,11 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateRegister }) => {
                   key={`${p.role}-${p.username}`}
                   type="button"
                   className={`demo-preset-btn ${identifier === p.username ? 'active' : ''}`}
-                  onClick={() => handleApplyPreset(p)}
+                  onClick={() => handleQuickLogin(p)}
+                  title={`Click to log in directly as ${p.title} (${p.description})`}
+                  disabled={submitting}
                 >
+                  <span className="preset-role-pill">{p.role}</span>
                   <span className="preset-title">{p.title}</span>
                   <span className="preset-user font-mono">@{p.username}</span>
                 </button>

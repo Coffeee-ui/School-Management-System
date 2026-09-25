@@ -39,7 +39,7 @@ export class GradeController {
 
   public static getGwaByStudent(req: Request, res: Response, next: NextFunction): void {
     try {
-      const studentId = req.params.studentId;
+      const studentId = req.params.studentId as string;
       const gwaInfo = gradeService.getStudentGwa(studentId);
       res.status(200).json(gwaInfo);
     } catch (err) {
@@ -49,7 +49,7 @@ export class GradeController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const grade = gradeService.getById(id);
       if (!grade) {
         res.status(404).json({ error: 'Grade record not found' });
@@ -91,7 +91,7 @@ export class GradeController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const encodedBy = req.user?.username || req.user?.employeeId || 'registrar';
       const updated = gradeService.update(id, {
         ...req.body,
@@ -125,7 +125,7 @@ export class GradeController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const grade = gradeService.getById(id);
       if (!grade) {
         res.status(404).json({ error: 'Grade record not found' });

@@ -1,4 +1,4 @@
-﻿# PROJECT_PROGRESS.md — Apex Institute School Management Portal
+# PROJECT_PROGRESS.md — Apex Institute School Management Portal
 
 > **Last Updated:** 2026-09-25
 > **Status:** Core implementation complete — both servers running, database seeded, UI fully functional
@@ -80,6 +80,6 @@ cd backend; npx tsx scripts/seed.ts
 
 - [ ] Mobile hamburger sidebar menu (<640px)
 - [ ] Session expiry auto-cleanup cron
-- [ ] Pagination wired on all data tables (UI present, backend offset queries exist)
-- [ ] Demo mode auto-seed on startup (set APP_MODE=demo + VITE_APP_MODE=demo to enable)
+- [x] Demo mode auto-seed on startup & single-source-of-truth backend config (controlled via backend/.env APP_MODE=demo|normal)
 - [ ] Grade PDF export
+

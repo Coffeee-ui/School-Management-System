@@ -42,7 +42,7 @@ export class StudentController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const student = studentService.getById(id);
       if (!student) {
         res.status(404).json({ error: 'Student not found' });
@@ -80,7 +80,7 @@ export class StudentController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const updated = studentService.update(id, req.body);
       if (!updated) {
         res.status(404).json({ error: 'Student not found' });
@@ -109,7 +109,7 @@ export class StudentController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const student = studentService.getById(id);
       if (!student) {
         res.status(404).json({ error: 'Student not found' });

@@ -147,7 +147,11 @@ export const EmployeeDashboard: React.FC<EmployeeDashboardProps> = ({ activeTab 
           </div>
           <div className="card-body p-0">
             {schedules.length === 0 ? (
-              <div className="empty-state">No duty or class schedules assigned for this term.</div>
+              <div className="empty-state">
+                <Calendar size={36} className="empty-state-icon" />
+                <div className="empty-state-title">No Assigned Schedules</div>
+                <div className="empty-state-desc">You currently have no teaching assignments or duty shifts scheduled for this term.</div>
+              </div>
             ) : (
               <div className="table-responsive">
                 <table className="data-table">

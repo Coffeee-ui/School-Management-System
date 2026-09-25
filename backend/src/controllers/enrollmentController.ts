@@ -32,7 +32,7 @@ export class EnrollmentController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const enrollment = enrollmentService.getById(id);
       if (!enrollment) {
         res.status(404).json({ error: 'Enrollment record not found' });
@@ -70,7 +70,7 @@ export class EnrollmentController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const updated = enrollmentService.update(id, req.body);
       if (!updated) {
         res.status(404).json({ error: 'Enrollment record not found' });
@@ -99,7 +99,7 @@ export class EnrollmentController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const enrollment = enrollmentService.getById(id);
       if (!enrollment) {
         res.status(404).json({ error: 'Enrollment record not found' });

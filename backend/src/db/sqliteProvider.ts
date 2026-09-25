@@ -39,21 +39,21 @@ export class SqliteProvider implements IDatabaseProvider {
   }
 
   public query<T = unknown>(sql: string, params: unknown[] = []): T[] {
-    const cleanParams = params.map(p => (p === undefined ? null : p));
+    const cleanParams = params.map(p => (p === undefined ? null : p)) as any[];
     const stmt = this.db.prepare(sql);
     const results = stmt.all(...cleanParams);
     return results as unknown as T[];
   }
 
   public queryOne<T = unknown>(sql: string, params: unknown[] = []): T | null {
-    const cleanParams = params.map(p => (p === undefined ? null : p));
+    const cleanParams = params.map(p => (p === undefined ? null : p)) as any[];
     const stmt = this.db.prepare(sql);
     const result = stmt.get(...cleanParams);
     return (result ?? null) as unknown as (T | null);
   }
 
   public execute(sql: string, params: unknown[] = []): QueryResult {
-    const cleanParams = params.map(p => (p === undefined ? null : p));
+    const cleanParams = params.map(p => (p === undefined ? null : p)) as any[];
     const stmt = this.db.prepare(sql);
     const result = stmt.run(...cleanParams);
     return {

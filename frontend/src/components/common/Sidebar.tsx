@@ -77,11 +77,22 @@ export const Sidebar: React.FC<SidebarProps> = ({ currentTab, onSelectTab }) => 
     }
   };
 
+  const getSectionTitle = () => {
+    switch (role) {
+      case 'student':   return 'Student Portal';
+      case 'employee':  return 'Faculty & Staff';
+      case 'hr':        return 'HR Operations';
+      case 'registrar': return 'Registrar Office';
+      case 'admin':     return 'System Control';
+      default:          return 'Navigation';
+    }
+  };
+
   const navItems = getNavItems();
 
   return (
     <aside className="app-sidebar">
-      <div className="sidebar-section-title">Navigation</div>
+      <div className="sidebar-section-title">{getSectionTitle()}</div>
       <nav className="sidebar-nav" role="navigation" aria-label="Main menu">
         {navItems.map((item) => {
           const Icon = item.icon;

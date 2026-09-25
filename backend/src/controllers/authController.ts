@@ -197,17 +197,10 @@ export class AuthController {
       },
       {
         role: 'employee',
-        title: 'Faculty / Professor',
+        title: 'Employee / Faculty',
         username: 'prof.smith',
         password: 'FacultyPassword123!',
         description: 'Personal profile, department assignment, and teaching schedules',
-      },
-      {
-        role: 'employee',
-        title: 'Security Staff',
-        username: 'officer.reyes',
-        password: 'SecurityPassword123!',
-        description: 'Security shifts, post assignments, and duty hours',
       },
       {
         role: 'student',

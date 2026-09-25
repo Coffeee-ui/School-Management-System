@@ -71,7 +71,7 @@ export class ScheduleController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const schedule = scheduleService.getById(id);
       if (!schedule) {
         res.status(404).json({ error: 'Schedule not found' });
@@ -109,7 +109,7 @@ export class ScheduleController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const updated = scheduleService.update(id, req.body);
       if (!updated) {
         res.status(404).json({ error: 'Schedule not found' });
@@ -138,7 +138,7 @@ export class ScheduleController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const schedule = scheduleService.getById(id);
       if (!schedule) {
         res.status(404).json({ error: 'Schedule not found' });

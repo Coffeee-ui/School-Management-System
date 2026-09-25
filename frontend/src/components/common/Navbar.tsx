@@ -2,7 +2,7 @@ import React from 'react';
 import { useAuth } from '../../hooks/useAuth.js';
 import { useNotification } from '../../hooks/useNotification.js';
 import { formatRole } from '../../utils/formatters.js';
-import { LogOut, GraduationCap, ShieldAlert, Sparkles, RefreshCw } from 'lucide-react';
+import { LogOut, GraduationCap, ShieldCheck, Sparkles, RefreshCw } from 'lucide-react';
 import { api } from '../../services/api.js';
 
 interface NavbarProps {
@@ -63,14 +63,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onRefreshData }) => {
 
       <div className="navbar-center">
         {demoMode ? (
-          <div className="demo-mode-pill" title="Demonstration mode active">
+          <div className="demo-mode-pill" title="Demonstration mode active (configured via backend environment)">
             <Sparkles size={14} />
             <span>DEMO MODE</span>
           </div>
         ) : (
-          <div className="normal-mode-pill" title="Normal institutional operation">
-            <ShieldAlert size={14} />
-            <span>NORMAL MODE</span>
+          <div className="normal-mode-pill" title="Standard institutional operation (configured via backend environment)">
+            <ShieldCheck size={14} />
+            <span>INSTITUTIONAL MODE</span>
           </div>
         )}
       </div>

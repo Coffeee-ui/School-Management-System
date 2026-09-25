@@ -165,7 +165,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ activeTab })
           </div>
           <div className="card-body p-0">
             {enrollments.length === 0 ? (
-              <div className="empty-state">No courses currently enrolled.</div>
+              <div className="empty-state">
+                <BookOpen size={36} className="empty-state-icon" />
+                <div className="empty-state-title">No Enrolled Courses</div>
+                <div className="empty-state-desc">You are not currently enrolled in any academic courses for this term.</div>
+              </div>
             ) : (
               <div className="table-responsive">
                 <table className="data-table">
@@ -212,7 +216,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ activeTab })
           </div>
           <div className="card-body p-0">
             {schedules.length === 0 ? (
-              <div className="empty-state">No class schedules assigned yet.</div>
+              <div className="empty-state">
+                <Calendar size={36} className="empty-state-icon" />
+                <div className="empty-state-title">No Class Schedules</div>
+                <div className="empty-state-desc">No active class schedules or room assignments found for your courses.</div>
+              </div>
             ) : (
               <div className="table-responsive">
                 <table className="data-table">
@@ -231,7 +239,7 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ activeTab })
                         <td className="font-semibold">{s.day_of_week}</td>
                         <td className="font-mono">{formatTime12(s.start_time)} - {formatTime12(s.end_time)}</td>
                         <td>
-                          <span className="font-mono font-bold">{s.course_code}</span> — {s.course_name}
+                          <span className="font-mono font-bold text-primary">{s.course_code}</span> — {s.course_name}
                         </td>
                         <td><span className="room-pill">{s.room}</span></td>
                         <td>{s.instructor_name || 'Assigned Faculty'}</td>
@@ -259,7 +267,11 @@ export const StudentDashboard: React.FC<StudentDashboardProps> = ({ activeTab })
           </div>
           <div className="card-body p-0">
             {grades.length === 0 ? (
-              <div className="empty-state">No encoded grades available for the current term.</div>
+              <div className="empty-state">
+                <Award size={36} className="empty-state-icon" />
+                <div className="empty-state-title">No Grades Encoded Yet</div>
+                <div className="empty-state-desc">Term grades have not yet been encoded by the registrar for the current semester.</div>
+              </div>
             ) : (
               <div className="table-responsive">
                 <table className="data-table">

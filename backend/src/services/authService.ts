@@ -95,7 +95,7 @@ export class AuthService {
     };
 
     const token = jwt.sign(payload, APP_CONFIG.JWT_SECRET, {
-      expiresIn: APP_CONFIG.JWT_EXPIRES_IN,
+      expiresIn: APP_CONFIG.JWT_EXPIRES_IN as any,
     });
 
     const safeUser = this.userRepo.findSafeById(user.id)!;

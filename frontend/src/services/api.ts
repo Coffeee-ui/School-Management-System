@@ -149,6 +149,10 @@ class ApiService {
     return res;
   }
 
+  public async getAppStatus(): Promise<{ mode: 'normal' | 'demo'; demoMode: boolean }> {
+    return this.request('/auth/status');
+  }
+
   public async getDemoPresets(): Promise<{ presets: DemoPreset[] }> {
     return this.request('/auth/demo-presets');
   }

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, useCallback, ReactNode } from 'react';
 import { SafeUser, Student, Employee, UserRole } from '../types/index.js';
 import { api } from '../services/api.js';
-import { APP_CONFIG } from '../config/index.js';
 
 interface AuthContextType {
   user: SafeUser | null;
@@ -27,10 +26,18 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<SafeUser | null>(null);
   const [profile, setProfile] = useState<Student | Employee | null>(null);
-  const [demoMode, setDemoMode] = useState<boolean>(APP_CONFIG.DEMO_MODE);
+  const [demoMode, setDemoMode] = useState<boolean>(false);
   const [loading, setLoading] = useState<boolean>(true);
 
   const reloadUser = useCallback(async () => {
+    // Single source of truth: sync active mode from backend environment
+    try {
+      const status = await api.getAppStatus();
+      setDemoMode(status.demoMode);
+    } catch {
+      // Ignore network errors on initial boot
+    }
+
     const token = api.getToken();
     if (!token) {
       setUser(null);

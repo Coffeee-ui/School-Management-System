@@ -17,7 +17,7 @@ export class CourseController {
 
   public static getById(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const course = courseService.getById(id);
       if (!course) {
         res.status(404).json({ error: 'Course not found' });
@@ -55,7 +55,7 @@ export class CourseController {
 
   public static update(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const updated = courseService.update(id, req.body);
       if (!updated) {
         res.status(404).json({ error: 'Course not found' });
@@ -84,7 +84,7 @@ export class CourseController {
 
   public static delete(req: Request, res: Response, next: NextFunction): void {
     try {
-      const id = parseInt(req.params.id, 10);
+      const id = parseInt(req.params.id as string, 10);
       const course = courseService.getById(id);
       if (!course) {
         res.status(404).json({ error: 'Course not found' });
