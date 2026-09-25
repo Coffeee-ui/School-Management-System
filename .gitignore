@@ -1,0 +1,31 @@
+# Node
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+.pnpm-store
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# Build outputs
+dist/
+build/
+*.tsbuildinfo
+
+# SQLite Database artifacts (Required by Section 29)
+*.db
+*.db-shm
+*.db-wal
+*.sqlite*
+backend/data/*.db*
+
+# OS and Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
