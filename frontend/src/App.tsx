@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext.js';
 import { NotificationProvider } from './context/NotificationContext.js';
 import { Navbar } from './components/common/Navbar.js';
 import { Sidebar } from './components/common/Sidebar.js';
+import { DemoSwitcher } from './components/common/DemoSwitcher.js';
 import { LoginPage } from './pages/LoginPage.js';
 import { RegisterPage } from './pages/RegisterPage.js';
 import { StudentDashboard } from './components/student/StudentDashboard.js';
@@ -98,6 +99,9 @@ const DashboardRouter: React.FC = () => {
           {renderDashboard()}
         </main>
       </div>
+
+      {/* Floating demo role switcher — only visible when APP_MODE=demo on backend */}
+      <DemoSwitcher />
     </div>
   );
 };

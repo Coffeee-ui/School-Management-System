@@ -2057,3 +2057,320 @@ input, textarea, select { font-family: var(--font-sans); }
   border-radius: var(--radius-sm);
 }
 
+/* ===================================================================
+   DEMO SWITCHER — Floating role-switcher control (demo mode only)
+   =================================================================== */
+
+/* ── Trigger button ──────────────────────────────────────────────── */
+.demo-switcher-trigger {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9900;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px 7px 11px;
+
+  background: hsla(280, 50%, 15%, 0.92);
+  border: 1px solid var(--color-demo);
+  border-radius: var(--radius-pill);
+  box-shadow: 0 0 18px hsla(280, 75%, 62%, 0.35), var(--shadow-md);
+
+  color: var(--color-demo);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  backdrop-filter: blur(8px);
+}
+
+.demo-switcher-trigger:hover {
+  background: hsla(280, 55%, 20%, 0.96);
+  box-shadow: 0 0 24px hsla(280, 75%, 62%, 0.5), var(--shadow-lg);
+  transform: translateY(-1px);
+}
+
+.demo-switcher-trigger--active {
+  background: hsla(280, 60%, 22%, 0.98);
+  box-shadow: 0 0 28px hsla(280, 75%, 62%, 0.6), var(--shadow-lg);
+}
+
+.demo-switcher-trigger-label {
+  line-height: 1;
+}
+
+/* ── Floating panel ──────────────────────────────────────────────── */
+.demo-switcher-panel {
+  position: fixed;
+  bottom: 60px;
+  right: 20px;
+  z-index: 9901;
+
+  width: 240px;
+
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-demo);
+  border-radius: var(--radius-xl);
+  box-shadow: 0 0 32px hsla(280, 75%, 62%, 0.22), var(--shadow-xl);
+  backdrop-filter: blur(12px);
+
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  animation: demo-panel-in 0.15s ease;
+}
+
+@keyframes demo-panel-in {
+  from { opacity: 0; transform: translateY(6px) scale(0.97); }
+  to   { opacity: 1; transform: translateY(0)   scale(1); }
+}
+
+/* Panel header */
+.demo-switcher-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px 8px;
+  border-bottom: 1px solid hsla(280, 75%, 62%, 0.2);
+  background: hsla(280, 50%, 12%, 0.6);
+}
+
+.demo-switcher-header-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-demo);
+}
+
+.demo-switcher-header-icon {
+  flex-shrink: 0;
+}
+
+.demo-switcher-header-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.demo-switcher-close {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-family: var(--font-sans);
+}
+.demo-switcher-close:hover {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+/* Current session badge */
+.demo-switcher-current {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 12px;
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-surface);
+  flex-wrap: wrap;
+}
+
+.demo-switcher-current-label {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.demo-switcher-current-role {
+  font-size: 0.6875rem;
+  font-weight: 800;
+  color: var(--color-demo);
+  letter-spacing: 0.06em;
+  background: hsla(280, 50%, 15%, 0.8);
+  border: 1px solid hsla(280, 75%, 62%, 0.3);
+  padding: 1px 6px;
+  border-radius: var(--radius-pill);
+}
+
+.demo-switcher-current-user {
+  font-size: 0.6875rem;
+  font-family: var(--font-mono);
+  color: var(--color-text-secondary);
+}
+
+/* Role list */
+.demo-switcher-roles {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 6px;
+  max-height: 280px;
+  overflow-y: auto;
+}
+
+/* Loading state inside roles list */
+.demo-switcher-loading {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 10px;
+  font-size: 0.8125rem;
+  color: var(--color-text-muted);
+}
+
+/* Individual role button */
+.demo-switcher-role-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 10px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition-fast);
+  font-family: var(--font-sans);
+  text-align: left;
+}
+
+.demo-switcher-role-btn:hover:not(:disabled):not(.demo-switcher-role-btn--active) {
+  background: var(--color-bg-hover);
+  border-color: hsla(280, 75%, 62%, 0.25);
+}
+
+.demo-switcher-role-btn--active {
+  background: hsla(280, 50%, 18%, 0.7);
+  border-color: var(--color-demo);
+  cursor: default;
+}
+
+.demo-switcher-role-btn:disabled:not(.demo-switcher-role-btn--active) {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.demo-switcher-role-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.demo-switcher-role-pill {
+  flex-shrink: 0;
+  font-size: 0.5625rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-demo);
+  background: hsla(280, 50%, 15%, 0.8);
+  border: 1px solid hsla(280, 75%, 62%, 0.3);
+  padding: 1px 5px;
+  border-radius: var(--radius-pill);
+  line-height: 1.6;
+  min-width: 44px;
+  text-align: center;
+}
+
+.demo-switcher-role-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  overflow: hidden;
+}
+
+.demo-switcher-role-title {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.demo-switcher-role-user {
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.demo-switcher-role-right {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+}
+
+/* Active indicator dot */
+.demo-switcher-active-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-demo);
+  box-shadow: 0 0 6px var(--color-demo);
+  flex-shrink: 0;
+}
+
+/* Chevron on non-active rows */
+.demo-switcher-chevron {
+  color: var(--color-text-muted);
+  opacity: 0.6;
+  transition: var(--transition-fast);
+}
+.demo-switcher-role-btn:hover .demo-switcher-chevron {
+  color: var(--color-demo);
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+/* Footer */
+.demo-switcher-footer {
+  padding: 6px 8px 8px;
+  border-top: 1px solid var(--color-border-subtle);
+}
+
+.demo-switcher-reset-btn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  width: 100%;
+  padding: 6px 10px;
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition-fast);
+}
+
+.demo-switcher-reset-btn:hover:not(:disabled) {
+  background: var(--color-warning-soft);
+  border-color: var(--color-warning);
+  color: var(--color-warning);
+}
+
+.demo-switcher-reset-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

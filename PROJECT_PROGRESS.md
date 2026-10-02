@@ -49,7 +49,7 @@ Full-stack School Management Portal for Apex Institute.
 
 | Role | Username | Password |
 |------|----------|----------|
-| Admin | admin | AdminPassword123! |
+| Admin | admin | Qwerty061902 |
 | Registrar | registrar | RegistrarPassword123! |
 | HR | hr_manager | HrPassword123! |
 | Faculty | prof.smith | FacultyPassword123! |
